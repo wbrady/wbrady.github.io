@@ -1,2 +1,2 @@
 safe: false
-exclude: ['Gemfile', 'Gemfile.lock', 'LICENSE', 'README.md']
+exclude: ['Gemfile', 'Gemfile.lock', 'LICENSE', 'README.md', 'deploy', 'Rakefile']

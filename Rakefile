@@ -1,13 +1,16 @@
 desc "Deploy"
 task :deploy do
+  puts "## Building site"
+  system "bundle exec jekyll build"
+
   puts "## Deploying to Github Pages.."
 
-  (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
+  (Dir["deploy/*"]).each { |f| rm_rf(f) }
 
-  puts "## Copying #{public_dir} to #{deploy_dir}"
-  cp_r "#{public_dir}/.", deploy_dir
+  puts "## Copying _site/ to deploy/"
+  cp_r "_site/.", 'deploy'
 
-  cd "#{deploy_dir}" do
+  cd "deploy" do
     system "git add ."
     system "git add -u"
 
@@ -15,7 +18,7 @@ task :deploy do
     message = "Site updated at #{Time.now.utc}"
     system "git commit -m \"#{message}\""
 
-    puts "## Pushing generated #{deploy_dir} website"
+    puts "## Pushing generated deploy website"
     system "git push origin master --force"
 
     puts "## Deploy Complete!"
