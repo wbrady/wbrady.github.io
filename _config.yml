@@ -1,0 +1,2 @@
+safe: false
+exclude: ['Gemfile', 'Gemfile.lock', 'LICENSE', 'README.md']
